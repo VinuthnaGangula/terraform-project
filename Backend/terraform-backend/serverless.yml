@@ -1,0 +1,14 @@
+service: terraform-backend
+provider:
+  name: aws
+  stage: dev
+  profile: <YOUR-PROFILE-NAME>
+  region: <REGION-NAME>
+  runtime: nodejs12.x
+  timeout: 180
+functions:
+  app:
+    handler: app.handler
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
